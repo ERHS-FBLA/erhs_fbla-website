@@ -65,3 +65,7 @@ node_modules/
 # dotenv environment variables file
 .env
 studio_designs/Untitled.bsdesign
+
+# OS / editor
+.DS_Store
+.vscode/

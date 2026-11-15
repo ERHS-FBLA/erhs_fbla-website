@@ -1,6 +1,8 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    ".read": false,
+    ".write": false,
+    "1rSWiDsligRQFN25PMePdPlImUC1ZnpEo_W0VGerpXoU": { ".read": true },
+    "10m2nmbbruES_Femj-myVdpo_pfH0fzlZP15ILy775b4": { ".read": true }
   }
 }
