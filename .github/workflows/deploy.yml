@@ -8,11 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      HAS_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ERHSFBLAWEB != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Skip until the Firebase service account secret is added
+        if: env.HAS_KEY != 'true'
+        run: echo "::notice::FIREBASE_SERVICE_ACCOUNT_ERHSFBLAWEB is not set; skipping deploy."
+
+      - if: env.HAS_KEY == 'true'
+        uses: actions/checkout@v4
 
       # Hosting: publishes public/ to https://erhsfblaweb.web.app
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - if: env.HAS_KEY == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ERHSFBLAWEB }}
